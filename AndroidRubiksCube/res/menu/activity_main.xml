@@ -11,4 +11,12 @@
         android:title="@string/menu_solve"
         android:orderInCategory="100"
         android:showAsAction="never" />
+    <item android:id="@+id/menu_reset_camera"
+        android:title="@string/menu_reset_camera"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+    <item android:id="@+id/menu_reset_cube"
+        android:title="@string/menu_reset_cube"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
 </menu>

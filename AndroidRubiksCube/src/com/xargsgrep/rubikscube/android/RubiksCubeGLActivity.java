@@ -2,7 +2,6 @@ package com.xargsgrep.rubikscube.android;
 
 import com.xargsgrep.rubikscube.android.R;
 
-import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -35,6 +34,12 @@ public class RubiksCubeGLActivity extends Activity {
 	    		return true;
 	    	case R.id.menu_solve:
 	    		glView.getRenderer().toggleSolveCube();
+	    		return true;
+	    	case R.id.menu_reset_camera:
+	    		glView.getRenderer().resetCamera();
+	    		return true;
+	    	case R.id.menu_reset_cube:
+	    		glView.getRenderer().resetCube();
 	    		return true;
     	}
     	return false;

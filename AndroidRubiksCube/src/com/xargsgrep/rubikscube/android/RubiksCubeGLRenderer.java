@@ -14,7 +14,6 @@ import com.xargsgrep.rubikscube.Rotation.Axis;
 import com.xargsgrep.rubikscube.Rotation.Direction;
 import com.xargsgrep.rubikscube.RubiksCubeSolver;
 
-import android.content.Context;
 import android.opengl.GLSurfaceView.Renderer;
 import android.opengl.GLU;
 
@@ -31,7 +30,6 @@ public class RubiksCubeGLRenderer implements Renderer {
 	private static final float DEFAULT_ZOOM = -18.0f;
 	
 	private static final int SECTION_ROTATE_STEP_DEGREES = 90;
-//	private static final int CAMERA_ROTATE_STEP_DEGREES  = 5;
 
 	private float cameraAngleX = DEFAULT_CAMERA_ANGLE_X;
 	private float cameraAngleY = DEFAULT_CAMERA_ANGLE_Y;
@@ -51,17 +49,11 @@ public class RubiksCubeGLRenderer implements Renderer {
 	private RotationAnimatorThread scrambleAnimatorThread;
 	private RotationAnimatorThread solutionAnimatorThread;
 	
-	private Context context;
-	
-	public RubiksCubeGLRenderer(Context context) {
-		this.context = context;
-		
-		int size = 3;
+	public RubiksCubeGLRenderer(int size) {
 		this.rubiksCube = new RubiksCube(size);
 		this.columnAnglesX = new float[size];
 		this.rowAnglesY = new float[size];
 		this.faceAnglesZ = new float[size];
-		
 	}
 	
 	@Override
@@ -285,12 +277,30 @@ public class RubiksCubeGLRenderer implements Renderer {
 		}
 	}
 
-	public void addToCameraAngleX(float cameraAngleX) {
+	public void rotateCameraX(float cameraAngleX) {
 		this.cameraAngleX += cameraAngleX;
 	}
 
-	public void addToCameraAngleY(float cameraAngleY) {
+	public void rotateCameraY(float cameraAngleY) {
 		this.cameraAngleY += cameraAngleY;
+	}
+	
+	public void setZoom(float zoom) {
+		this.zoom = zoom;
+	}
+
+	public void resetCamera() {
+		cameraAngleX = DEFAULT_CAMERA_ANGLE_X;
+		cameraAngleY = DEFAULT_CAMERA_ANGLE_Y;
+		cameraAngleZ = ZERO_F;
+		zoom = DEFAULT_ZOOM;
+	}
+	
+	public void resetCube() {
+		columnAnglesX = new float[rubiksCube.getSize()];
+		rowAnglesY = new float[rubiksCube.getSize()];
+		faceAnglesZ = new float[rubiksCube.getSize()];
+		rubiksCube.resetState();
 	}
 	
 }
