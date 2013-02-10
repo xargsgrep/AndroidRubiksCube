@@ -17,7 +17,6 @@ public class Square {
 	private Color color;
 	private FloatBuffer vertexBuffer;
 	
-	
 	public Square(float[] vertices, Color color) {
 		this.vertices = vertices;
 		this.color = color;

@@ -40,9 +40,9 @@ public class RubiksCubeGLSurfaceView extends GLSurfaceView {
 			case MotionEvent.ACTION_MOVE:
 				deltaX = currentX - previousX;
 				deltaY = currentY - previousY;
-		        if (!scaleDetector.isInProgress()) {
-					renderer.rotateCameraX(deltaY * TOUCH_SCALE_FACTOR);
-					renderer.rotateCameraY(deltaX * TOUCH_SCALE_FACTOR);
+				if (!scaleDetector.isInProgress()) {
+		        	renderer.rotateCameraX(deltaY * TOUCH_SCALE_FACTOR);
+		        	renderer.rotateCameraY(deltaX * TOUCH_SCALE_FACTOR);
 					invalidate();
 				}
 		}
@@ -60,11 +60,11 @@ public class RubiksCubeGLSurfaceView extends GLSurfaceView {
 	private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
 		@Override
 		public boolean onScale(ScaleGestureDetector detector) {
-	        scaleFactor *= detector.getScaleFactor();
-	        scaleFactor = Math.max(MIN_ZOOM, Math.min(scaleFactor, MAX_ZOOM));
-	        renderer.setZoom(scaleFactor);
-	        invalidate();
-	        return true;
+			scaleFactor *= 1/detector.getScaleFactor();
+			scaleFactor = Math.max(MIN_ZOOM, Math.min(scaleFactor, MAX_ZOOM));
+			renderer.setZoom(scaleFactor);
+			invalidate();
+			return true;
 		}
 	}
 	
